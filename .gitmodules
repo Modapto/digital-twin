@@ -1,7 +1,7 @@
 [submodule "FAAAST-Service"]
 	path = FAAAST-Service
 	url = https://github.com/FraunhoferIOSB/FAAAST-Service
-	branch = feature/submodel-template-processor
+	branch = MODAPTO/submodel-template-processor
 [submodule "faaast-smt-simulation-processor"]
 	path = faaast-smt-simulation-processor
 	url = https://github.com/Modapto/faaast-smt-simulation-processor

@@ -1,4 +1,4 @@
-name: Docker Image CI - Access Control
+name: Docker Image CI - Digital Twin
 
 on:
   push:

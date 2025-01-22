@@ -31,10 +31,11 @@ jobs:
         password: ${{ secrets.CI_ORG_TOKEN }}
 
     - name: Show root content
-      run: ls
+      run: ls -la
 
     - name: Show FAAAST-Service content
-      run: cd FAAAST-Service && ls
+      working-directory: ./FAAAST-Service
+      run: ls -la
       
     - name: Build Essential Java Dependencies
       run: make build

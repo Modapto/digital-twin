@@ -1,10 +1,20 @@
 name: Docker Image CI - Digital Twin
 
+env:
+  DOCKER_IMAGE: digital-twin
+
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - '**/README.md'
+      - '*.github/workflows/**'
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - '**/README.md'
+      - '*.github/workflows/**'
+  workflow_dispatch:
 
 jobs:
   build-and-push-image:
@@ -20,8 +30,11 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.CI_ORG_TOKEN }}
 
+    - name: Build Essential Java Dependencies
+      run: make build
+
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/modapto/digital-twin:latest
+      run: docker build . --file Dockerfile --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
 
     - name: Push the Docker image
-      run: docker push ghcr.io/modapto/digital-twin:latest
+      run: docker push ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest

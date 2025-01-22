@@ -30,12 +30,12 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.CI_ORG_TOKEN }}
 
-    - name: Show root content
-      run: ls -la
-
-    - name: Show FAAAST-Service content
-      working-directory: ./FAAAST-Service
-      run: ls -la
+    - name: List directory contents
+      run: |
+        echo "Root directory contents:"
+        ls
+        echo -e "\nFAAAST-Service directory contents:"
+        cd FAAAST-Service && ls -la
       
     - name: Build Essential Java Dependencies
       run: make build

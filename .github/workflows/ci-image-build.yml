@@ -47,13 +47,6 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.CI_ORG_TOKEN }}
-
-    - name: List directory contents
-      run: |
-        echo "Root directory contents:"
-        ls
-        echo -e "\nFAAAST-Service directory contents:"
-        cd FAAAST-Service && ls -la
       
     - name: Build Essential Java Dependencies
       run: make build

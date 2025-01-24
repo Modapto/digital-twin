@@ -25,6 +25,22 @@ jobs:
       with:
          submodules: ‘true’
 
+    # Fetch the FAAAST-Service Forked Branch
+    - name: Clone FAAAST-Service Forked Branch
+      run: |
+        git clone --branch aab7d0a2ba2ebd617b2422988d36d459e1ba505e https://github.com/FraunhoferIOSB/FAAAST-Service.git faaast-service
+        cd faaast-service
+        git checkout aab7d0a2ba2ebd617b2422988d36d459e1ba505e
+        cd ..
+
+    # Fetch the Simulation Processor Forked Branch
+    - name: Clone FAAAST-Simulator-Processor Forked Branch
+      run: |
+        git clone --branch 27b69f5f00483f740bc09057b6b6bfec76d3b426 https://github.com/Modapto/faaast-smt-simulation-processor.git faaast-smt-simulation-processor
+        cd faaast-smt-simulation-processor
+        git checkout 27b69f5f00483f740bc09057b6b6bfec76d3b426
+        cd ..
+    
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
       with:

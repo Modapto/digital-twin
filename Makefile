@@ -40,10 +40,14 @@ clean:
 	cd $(DIR_FAAAST) && mvn clean
 	
 	@echo "Cleaning faaast-smt-simulation-processor..."
-	rm -r $(DIR_SMT_SIMULATION_PROCESSOR) && mvn clean
+	cd $(DIR_SMT_SIMULATION_PROCESSOR) && mvn clean
 	
 	@echo "Cleaning target directory..."
 	rm -rf $(DIR_TARGET)
 	
 	@echo "Cleaning up local images..."
-	docker rmi $(DOCKER_REGISTRY)/$(DOCKER_IMAGE_NAME):$(DOCKER_TAG) || true
+	@if docker image inspect $(DOCKER_REGISTRY)/$(DOCKER_IMAGE_NAME):$(DOCKER_TAG) > /dev/null 2>&1; then \
+		docker rmi --force $(DOCKER_REGISTRY)/$(DOCKER_IMAGE_NAME):$(DOCKER_TAG); \
+	else \
+		echo "Image does not exist."; \
+	fi

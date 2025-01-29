@@ -23,33 +23,17 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v4
       with:
-         submodules: ‘recursive’
+         submodules: 'recursive'
 
-    # Fetch the FAAAST-Service Forked Branch
-    - name: Clone FAAAST-Service Forked Branch
-      uses: actions/checkout@v4
-      with:
-        repository: FraunhoferIOSB/FAAAST-Service
-        path: FAAAST-Service
-        ref: aab7d0a2ba2ebd617b2422988d36d459e1ba505e
+    - name: Build Project
+        run: make build
 
-    # Fetch the Simulation Processor Forked Branch
-    - name: Clone FAAAST-Simulator-Processor Forked Branch
-      uses: actions/checkout@v4
-      with:
-        repository: Modapto/faaast-smt-simulation-processor
-        path: faaast-smt-simulation-processor
-        ref: 27b69f5f00483f740bc09057b6b6bfec76d3b426
-    
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.CI_ORG_TOKEN }}
-      
-    - name: Build Essential Java Dependencies
-      run: make build
 
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest

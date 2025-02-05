@@ -63,5 +63,8 @@ jobs:
             docker compose pull ${{ env.DOCKER_IMAGE }}
             docker compose up -d --no-deps ${{ env.DOCKER_IMAGE }}
 
-            # Loggout
+            # Remove unused images
+            docker image prune -f
+
+            # Logout
             docker logout ghcr.io

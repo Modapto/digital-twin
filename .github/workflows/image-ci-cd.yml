@@ -2,6 +2,7 @@ name: Docker Image CI/CD - Digital Twin
 
 env:
   DOCKER_IMAGE: digital-twin
+  VERSION: 0.5.0-SNAPSHOT
 
 on:
   push:
@@ -37,7 +38,7 @@ jobs:
         password: ${{ secrets.CI_ORG_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
+      run: docker build . --file Dockerfile --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
 
     - name: Push the Docker image
-      run: docker push ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
+      run: docker push ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}

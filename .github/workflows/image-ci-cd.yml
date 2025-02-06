@@ -38,7 +38,10 @@ jobs:
         password: ${{ secrets.CI_ORG_TOKEN }}
 
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+      run: docker build . --file Dockerfile --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:${{ env.VERSION }} --tag ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
 
     - name: Push the Docker image
-      run: docker push ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+      run: |
+          docker push ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:${{ env.VERSION }}
+          docker push ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
+

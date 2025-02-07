@@ -1,4 +1,4 @@
-name: Docker Image CI/CD - Digital Twin
+name: Docker Image CI - Digital Twin
 
 env:
   DOCKER_IMAGE: digital-twin

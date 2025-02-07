@@ -21,7 +21,7 @@
 	"assetConnections": [],
 	"submodelTemplateProcessors": [
 		{
-			"@class": "eu.modapto.faaast.service.smt.simulation.SimulationSubmodelTemplateProcessor"
+			"@class": "eu.modapto.dt.faaast.service.smt.simulation.SimulationSubmodelTemplateProcessor"
 		}
 	]
 }

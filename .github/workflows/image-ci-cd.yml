@@ -3,6 +3,7 @@ name: Docker Image CI/CD - Digital Twin
 env:
   DOCKER_IMAGE: digital-twin
   DTM_DOCKER_IMAGE: digital-twin-management
+  FFT_CONTAINER: digital-twin-management-fft
   VERSION: 0.5.0-SNAPSHOT
 
 on:
@@ -67,6 +68,13 @@ jobs:
             cd /root/modapto/system-deployment
             docker compose pull ${{ env.DOCKER_IMAGE }}:latest
             docker compose up -d --no-deps ${{ env.DTM_DOCKER_IMAGE }}
+
+            # Deploy new Image
+            cd /root/modapto/fft-deployment
+            docker compose up -d --no-deps ${{ env.FFT_CONTAINER }}
+
+            # Restart DT Modules
+            docker restart $(docker ps -q --filter "ancestor= ghcr.io/modapto/digital-twin " --filter "name=^modapto-module-")
 
             # Remove unused images
             docker image prune -f

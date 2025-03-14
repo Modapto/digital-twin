@@ -66,7 +66,7 @@ jobs:
             
             # Deploy new Image
             cd /root/modapto/system-deployment
-            docker compose pull ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
+            docker pull ghcr.io/modapto/${{ env.DOCKER_IMAGE }}:latest
             docker compose up -d --no-deps ${{ env.DTM_CONTAINER }}
 
             # Deploy new Image

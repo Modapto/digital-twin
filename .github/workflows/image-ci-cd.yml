@@ -74,7 +74,7 @@ jobs:
             docker compose up -d --no-deps ${{ env.FFT_DTM_CONTAINER }}
 
             # Restart DT Modules
-            docker restart $(docker ps -q --filter "name=^modapto-module-")
+            docker restart $(docker ps -q --filter "label=modapto-type=module")
 
             # Remove unused images
             docker image prune -f

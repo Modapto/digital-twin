@@ -16,7 +16,6 @@ This project includes a `make` file supporting the following goal
 ## Changelog
 
 <!--changelog-anchor-->
-<!--start:changelog-header-->
-## 0.5.0-SNAPSHOT (current development version)<!--end:changelog-header-->
+## 0.5
 
 Initial release

@@ -73,7 +73,7 @@ echo "Next: replacing version nubmers [enter]"
 read -s
 sed -i "/^<!--${TAG_CHANGELOG_ANCHOR}-->$/a <!--start:${TAG_CHANGELOG_HEADER}-->\\n<!--end:${TAG_CHANGELOG_HEADER}-->" "$README_FILE"
 replaceValue "$README_FILE" "$TAG_CHANGELOG_HEADER" "## ${NEXTVERSION}-SNAPSHOT (current development version)"
-sed -i "/VERSION:/s/: .*/: ${NEXTVERSION}/" "${WORKFLOW_FILE}"
+sed -i "/VERSION:/s/: .*/: ${NEXTVERSION}-SNAPSHOT/" "${WORKFLOW_FILE}"
 git -C faaast-smt-simulation-processor checkout main
 git -C faaast-smt-simulation-processor pull origin main
 

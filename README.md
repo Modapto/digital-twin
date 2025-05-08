@@ -12,3 +12,11 @@ This project includes a `make` file supporting the following goal
 - `build` builds the FA³ST Service & faaast-smt-smiulation-processor and puts the resulting JAR files in `/target`
 - `docker` Requires `build` to be run first. Builds a local docker image named `ghcr.io/modapto/digital-twin:latest`.
 - `publish` Requires `build` and `docker` to be run first. Publishes the docker image to the Github docker registry.
+
+## Changelog
+
+<!--changelog-anchor-->
+<!--start:changelog-header-->
+## 0.5.0-SNAPSHOT (current development version)<!--end:changelog-header-->
+
+Initial release

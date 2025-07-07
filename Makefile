@@ -10,7 +10,10 @@ DOCKER_REGISTRY = ghcr.io
 all: build
 
 build:
-	@echo "Building FAAAST-Service..."; \
+	@echo "Building AAS4J patch version 1.0.5-SNAPSHOT..."; \
+	git clone https://github.com/eclipse-aas4j/aas4j.git aas4j; \
+	mvn -f aas4j/pom.xml clean spotless:apply install -DskipTests=true -Drevision=1.0.5-SNAPSHOT -Dmodel.version=1.0.5-SNAPSHOT; \
+	echo "Building FAAAST-Service..."; \
 	mvn -f $(DIR_FAAAST)/pom.xml install -DskipTests=true; \
 	VERSION_FAAAST=$$(mvn -f $(DIR_FAAAST)/pom.xml help:evaluate -Dexpression=project.version -q -DforceStdout); \
 	echo "FAAAST version: $$VERSION_FAAAST"; \
